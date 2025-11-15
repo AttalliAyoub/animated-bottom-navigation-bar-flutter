@@ -346,28 +346,12 @@ class _AnimatedBottomNavigationBarState
           }
         });
       });
-    try {
-      geometryListenable = Scaffold.geometryOf(context);
-    } catch (e) {
-      // Ignore the error if Scaffold is not found in the widget tree
-    }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      geometryListenable = Scaffold.geometryOf(context);
-    });
-    widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    try {
-      geometryListenable = Scaffold.geometryOf(context);
-    } catch (e) {
-      // Ignore the error if Scaffold is not found in the widget tree
-    }
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      geometryListenable = Scaffold.geometryOf(context);
-    });
+    geometryListenable = Scaffold.geometryOf(context);
     widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
   }
 
@@ -396,6 +380,7 @@ class _AnimatedBottomNavigationBarState
   @override
   Widget build(BuildContext context) {
     final clipper = CircularNotchedAndCorneredRectangleClipper(
+      context: context,
       shape: CircularNotchedAndCorneredRectangle(
         animation: widget.notchAndCornersAnimation,
         notchSmoothness: widget.notchSmoothness ?? NotchSmoothness.defaultEdge,

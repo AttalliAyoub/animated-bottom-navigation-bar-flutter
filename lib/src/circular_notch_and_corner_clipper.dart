@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 
 class CircularNotchedAndCorneredRectangleClipper extends CustomClipper<Path> {
   final ValueListenable<ScaffoldGeometry> geometry;
+  final BuildContext context;
   final NotchedShape shape;
   final double notchMargin;
 
   CircularNotchedAndCorneredRectangleClipper({
     required this.geometry,
+    required this.context,
     required this.shape,
     required this.notchMargin,
   }) : super(reclip: geometry);
 
   @override
   Path getClip(Size size) {
+    final geometry = Scaffold.geometryOf(context);
     final Rect? button = geometry.value.floatingActionButtonArea?.translate(
       0.0,
       geometry.value.bottomNavigationBarTop! * -1.0,
