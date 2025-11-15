@@ -351,9 +351,10 @@ class _AnimatedBottomNavigationBarState
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    geometryListenable = Scaffold.geometryOf(context);
-
-    widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      geometryListenable = Scaffold.geometryOf(context);
+      widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
+    });
   }
 
   @override
