@@ -346,6 +346,10 @@ class _AnimatedBottomNavigationBarState
           }
         });
       });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      geometryListenable = Scaffold.geometryOf(context);
+      widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
+    });
   }
 
   @override
