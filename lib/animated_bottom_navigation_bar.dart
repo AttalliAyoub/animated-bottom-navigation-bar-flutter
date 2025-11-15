@@ -346,19 +346,29 @@ class _AnimatedBottomNavigationBarState
           }
         });
       });
+    try {
+      geometryListenable = Scaffold.geometryOf(context);
+    } catch (e) {
+      // Ignore the error if Scaffold is not found in the widget tree
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       geometryListenable = Scaffold.geometryOf(context);
-      widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
     });
+    widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    try {
+      geometryListenable = Scaffold.geometryOf(context);
+    } catch (e) {
+      // Ignore the error if Scaffold is not found in the widget tree
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       geometryListenable = Scaffold.geometryOf(context);
-      widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
     });
+    widget.notchAndCornersAnimation?..addListener(() => setState(() {}));
   }
 
   @override
